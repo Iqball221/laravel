@@ -77,3 +77,55 @@ Route::get('absen', function () {
     ];
     return view('absen', compact('data'));
 });
+
+route::get('siswa', function () {
+    $siswas = [
+        ['id' => 1,
+            'nama' => 'aditya',
+            'username' => 'aditya',
+            'email' => 'aditya@gmail.com',
+            'alamat' => 'Bandung',
+            'mapel' => [
+                'mapel1' => 'Bahasa Indonesia',
+                'mapel2' => 'Bahasa Inggris',
+                'mapel3' => 'Bahasa Jepang',
+                'mapel4' => 'Bahasa Belanda',
+            ],
+        ],
+    ];
+    return view('siswa', compact('siswas'));
+});
+Route::get('/inputnilai/{nama?}/{mtk?}/{pro?}/{indo?}/{ingris?}', function ($nama = null, $mtk = 0, $pro = 0, $indo = 0, $ingris = 0) {
+    echo "Nama Saya:" . $nama . "<br>";
+    echo "Nialai Maatematika : " . $mtk . "<br>";
+    echo "Nialai Produktif : " . $pro . "<br>";
+    echo "Nialai Bahasa Indonesia :  " . $indo . "<br>";
+    echo "Nialai Bahsa Inggris : " . $ingris . "<br>";
+
+    $ratarata = ($mtk + $pro + $indo + $ingris) / 4;
+
+    echo "Rata-rata :" . $ratarata . "<br>";
+    echo "Grade : ";
+    if ($ratarata >= 90) {
+        echo "A";
+    } elseif ($ratarata >= 80) {
+        echo "B";
+    } elseif ($ratarata >= 70) {
+        echo "C";
+    } else {
+        echo "D";
+    }
+});
+Route::get('/pesan/{makanan?}/{minuman?}/{cemilan?}', function ($makanan = null, $minuman = null, $cemilan = null) {
+
+    if ($makanan = $makanan) {
+        echo "Makan : " . $makanan . "<br>";
+        if ($minuman = $minuman) {
+            echo "Minuman : " . $minuman . "<br>";
+        }if ($cemilan = $cemilan) {
+            echo "Cemilan : " . $cemilan . "<br>";
+        }
+    } else {
+        echo "Anda tidak memesan silahkan pulang";
+    }
+});
